@@ -1,0 +1,185 @@
+Joyfully Tricky: An Official Programming Style Manual for Java
+--------------------------------------------------------------
+
+There are many different styles of coding. With Java, it is often said that no specific style is the correct style. While many 
+different formats may compile and run successfully, some are undoubtedly superior to others.
+
+A coding style's superiority is borne of several factors. Readability is an issue: not only the easiness to comprehend through 
+meticulous examination, but the tendency to offer consistent, understandable "big ideas" from an extensive, complex program. 
+Certain styles are more aesthetically pleasing - ours infinitely so - and aid in the programmer's eyesight's longevity.
+
+The following details our programming style. Some styles are superior to others. Ours is superior to all.
+
+
+1. IDENTIFIERS
+	(a.k.a. names)
+	
+	A. STANDARD IDENTIFIERS
+		Package, class, non-final variable, and method identifiers must follow standard Java practice, which includes the following:
+		 * Packages must begin with lowercase letters.
+		 * Class names must begin with capital letters.
+		 * Non-final variable identifiers must begin with lowercase letters.
+		 * Method identifiers must begin with lowercase letters.
+		 * Any words beyond the first in an identifier must begin with a capital letter.
+			
+			Example:
+				Muffin georgeTheMuffin = new Muffin();
+				MuffinTopping t = georgeTheMuffin.extractTopping();
+		
+		Final variables may be named in all uppercase, with underscores between words, if they are meant to be used as constants.
+		
+		File names are strings, and may be formatted according to use or simply to the programmer's fancy.
+		
+	B. SPECIAL METHODS
+		Method naming must follow specific guidelines depending on the action of the method.
+		See part 2. METHODS in this manual for the full specifications.
+		
+2. METHODS
+	
+	A. IDENTIERS
+		Method names must follow the rules stipulated in part 1A of this manual. They must also comply with the rest of part 2.
+		
+	B. GETTERS AND SETTERS
+		A method whose only executable code is a statement returning a private data member is a getter. Conversely, if a method 
+		accepts any parameters or does anything except return a private data member, including but not limited to performing 
+		calculations or evaluations, it is NOT a getter.
+		A method which takes a single parameter and whose only executable code is to assign a private data member this value is 
+		a setter. Conversely, if a method accepts anything other than one parameter or does anything other than assign a private 
+		data member this value, it is NOT a setter.
+		
+		Getters must use the identifier "getFieldName", where "FieldName" must be replaced by the identifier of the data member 
+		to be returned.
+		If the getter returns a value of type boolean or Boolean, the identifier should replace "get" with "is". However, any  
+		other type, even a functionally similar type (e.g. BooleanProperty), must still use "get".
+		
+		Setters must use the same identifier but replace "get" or "is" with "set".
+		
+		Setters must name their parameters with the same identifier as that of the private data member they are setting.
+		Setters will then replace the member by using the code,
+			this.fieldName = fieldName;
+		where "fieldName" should be replaced by the member identifier.
+		
+			Example:
+				public class Student {
+					
+					public boolean isFemale() {
+						return female;
+					}
+					
+					public void setFemale(boolean female) {
+						this.female = female;
+					}
+					
+					public int getHappiness() {
+						return happiness;
+					}
+					
+					public void setHappiness(int happiness) {
+						this.happiness = happiness.
+					}
+					
+					private boolean female;
+					private int happiness;
+					
+				}
+				
+		Because getters and setters are stylistically and functionally uniform, they need no javadoc comments.
+		
+	C. METHOD ORGANIZATION
+		Methods must follow a specific arrangement in a class, according to the following layout:
+		
+		 1. Constructors
+		 	* If a class contains constructors that use a different constructor, put the dependent constructors after the ones
+		 	  they depend on.
+		 2. Overriding methods
+		 3. Getters and setters
+		 4. Remaining public methods
+		 5. Private methods
+		 
+		Within each category, methods may be arranged in the order that makes the most sense to the programmer, especially if 
+		that programmer is Joy or Kevin.
+		
+3. SPACING AND ORGANIZATION
+	Spacing and organization is a highly contentious issue in modern coding, and yet there is are ways superior to others.
+	This is the most superior.
+	
+	Terminology:
+	 { }	curly brace (opening and closing)
+	 [ ]	square bracket (opening and closing)
+	 ( )	parenthesis (opening and closing)
+	 < >	angled bracket (opening and closing)
+	 *		star
+	 
+	A tab is four spaces long, and is treated as a single unit in this manual. Standard indentation and spacing practices should 
+	be observed. Each line should contain no more than one executable statement.
+	
+	If a line's length irks the programmer (perhaps it is longer than can be displayed on the screen), he/she may insert a legal 
+	line break in the middle. The code on the second line must be preceded by two additional tabs.
+		Example:
+			if (school.getClassrooms().get(100).getStudents().get(0).getHappiness() > 
+					school.getClassrooms().get(100).getStudents().get(1).getHappiness()) {
+				// Execute code here
+			}
+	
+	The organization of a class should be according to the following layout:
+	 1. Public static and final data members
+	 2. Public non-static and non-final data members
+	 3. Methods (see section 3C of this manual)
+	 4. Private data members
+	Initialization statements should be made in the constructor and not in the declaration of data members, with the exception of 
+	constants and certain final variables.
+		
+	Method calls and declarations should not have any spaces between the method identifier and the opening parenthesis following 
+	it. These include constructors.
+		Example:
+			public void isJoyful() {...}
+		Example:
+			boolean tricky = joy.isTricky();
+		Example:
+			public DangerousDuo(Wizard firstWizard, Wizard secondWizard) {
+				super(firstWizard, secondWizard);
+			}
+		Example:
+			DangerousDuo jk = new DangerousDuo(new Joy(999), new Kevin(9999));
+	
+	Curly braces must never be the first character in a line, but must always be appended to the end of the previous, following 
+	a space.
+		Example:
+			public class KevinIsFantastic {
+			}
+		Example:
+			public static void main(String[] args) {
+			}
+		Example:
+			for (int fantasticness = 0, limit = 10; fantasticness < limit; ++fantasticness, ++limit) {
+			}
+		
+	if, switch, while, for, and synchronized commands should be followed by a single space and then their parameter(s).
+	
+	The square brackets in array declarations must be immediately following and adjacent to the element type.
+		Example:
+			int[] array = new int[100];
+		Example:
+			public void setSeatingChart(Student[][] seatingChart) {...}
+		
+	Collections and other parameterized objects should be parameterized.
+	
+4. COMMENTS AND DOCUMENTATION
+	Comments are valuable and important. Good documentation should be pursued, although perhaps not with quite the zeal that Mr. 
+	Hayes possesses regarding them.
+	
+	A. SINGLE-LINE COMMENTS
+		Single-line comments must consist of a double slash followed by a single space followed by the comment body.
+		Single-line comments meriting their own line must begin with a capital letter, while single-line comments following code 
+		should begin with a lowercase letter.
+		
+	B. JAVADOC COMMENTS
+		It is good practice to include javadoc-style comments before most methods. Javadoc comments for methods must include a 
+		param annotation for each parameter accepted, offering the name of the parameter and optionally other details. Comments 
+		must also include a return annotation if applicable.
+		
+		Getters, setters, and other methods with obvious functionality do not require javadoc comments.
+		
+		Javadoc-style comments in front of other entities, such as class declarations and data members, are left to the discretion 
+		of the programmer.
+		
